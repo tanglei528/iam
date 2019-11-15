@@ -18,5 +18,10 @@ const (
     ErrorGetAppFail   = 10013
     ErrorCreateAppFail = 100014
 
+    ErrorCountAppRolesFail = 10111
+    ErrorListAppRolesFail  = 10112
+    ErrorGetAppRole  = 10113
+    ErrorUpdateAppRole  = 10114
+
     ErrorConvIntToBool  = 50001
 )

@@ -9,6 +9,8 @@ import (
     "net/http"
 )
 
+// 可以把逻辑抽取到service层，api层只保留基础的调用，参照role
+
 type AddAppForm struct {
     Name          string    `form:"name" json:"name" valid:"Required;MaxSize(100)"`
     IsActive      int       `form:"is_active" json:"is_active" valid:"Required;Range(0,1)"`

@@ -1,0 +1,8 @@
+[ERROR][request.go:17]2019/11/15 17:10:59 [name 必须存在且不能为空]
+[ERROR][request.go:17]2019/11/15 17:10:59 [description 必须存在且不能为空]
+[ERROR][role.go:100]2019/11/15 17:18:04 [[record not found]]
+[ERROR][role.go:100]2019/11/15 17:21:03 [修改应用角色失败 [record not found]]
+[ERROR][role.go:157]2019/11/15 17:24:29 [获取应用单个角色失败 [record not found]]
+[ERROR][role.go:157]2019/11/15 17:30:54 [4 获取应用单个角色失败 [record not found]]
+[ERROR][role.go:157]2019/11/15 17:31:38 [4 获取应用单个角色失败 [record not found]]
+[ERROR][role.go:157]2019/11/15 17:31:44 [3 获取应用单个角色失败 [record not found]]

@@ -1,6 +1,11 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+    "github.com/jinzhu/gorm"
+    "iam/pkg/utils"
+)
+
+//App 逻辑先写了，参数等可以参看role做优化
 
 type App struct {
     Model
@@ -9,7 +14,9 @@ type App struct {
     Description    string       `gorm:"size:255"`
     IndexUrl       string       `gorm:"column:index_url;size:255;not null"`
     LoginUrl       string       `gorm:"column:login_url;size:255;not null"`
-    Deleted        int          `gorm:"size:1;not null;DEFAULT:0"`
+    //Deleted        int          `gorm:"size:1;not null;DEFAULT:0"`
+    AccessKey      string       `gorm:"column:access_key;not null"`
+    SecretKey      string       `gorm:"column:secret_key;not null"`
 }
 
 func AddApp(data map[string]interface{}) (*App, error) {
@@ -19,6 +26,8 @@ func AddApp(data map[string]interface{}) (*App, error) {
         Description: data["description"].(string),
         IndexUrl:    data["index_url"].(string),
         LoginUrl:    data["login_url"].(string),
+        AccessKey:   utils.GenerateUUID(),
+        SecretKey:   utils.GenerateUUID(),
     }
     if err := db.Create(&app).Error; err != nil {
         return nil, err

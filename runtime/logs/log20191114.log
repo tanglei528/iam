@@ -15,3 +15,6 @@
 [ERROR][request.go:17]2019/11/14 11:22:53 [name 必须存在且不能为空]
 [ERROR][request.go:17]2019/11/14 11:22:53 [is_active 必须存在且不能为空]
 [ERROR][request.go:17]2019/11/14 14:08:53 [login_url 必须存在且不能为空]
+[ERROR][request.go:17]2019/11/14 16:20:48 [is_active 必须存在且不能为空]
+[ERROR][request.go:17]2019/11/14 16:20:48 [index_url 必须存在且不能为空]
+[ERROR][request.go:17]2019/11/14 16:20:48 [login_url 必须存在且不能为空]

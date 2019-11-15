@@ -7,3 +7,8 @@ func IntToBool(p int) (bool, error) {
     b, err := strconv.ParseBool(s)
     return b, err
 }
+
+func ConvErrorToSlice(err error, errorsInfo []string) []string {
+    errorsInfo = append(errorsInfo, err.Error())
+    return errorsInfo
+}

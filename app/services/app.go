@@ -67,7 +67,7 @@ func (appInfo *AppInfo) UpdateApp() ([]AppInfo, error) {
     if err != nil {
         return nil, err
     }
-    return FormatData(dbApp), nil
+    return formatData(dbApp), nil
 }
 
 func (appInfo *AppInfo) GetByID() ([]AppInfo, error) {
@@ -76,7 +76,7 @@ func (appInfo *AppInfo) GetByID() ([]AppInfo, error) {
     if err != nil {
         return nil, err
     }
-    return FormatData(data), err
+    return formatData(data), err
 }
 
 func (appInfo *AppInfo) GetAll(pageNum, pageSize int) ([]AppInfo, error) {
@@ -84,7 +84,7 @@ func (appInfo *AppInfo) GetAll(pageNum, pageSize int) ([]AppInfo, error) {
     if err != nil {
         return nil, err
     }
-    appsInfo := FormatData(apps)
+    appsInfo := formatData(apps)
     //jsonAppsInfo, err := json.Marshal(appsInfo)
     return appsInfo, nil
 }
@@ -95,7 +95,6 @@ func (appInfo *AppInfo) Count() (int, error) {
 
 func (appInfo *AppInfo) getParamMaps() map[string]interface{} {
     maps := make(map[string]interface{})
-    maps["Deleted"] = 0
 
     if appInfo.Name != "" {
         maps["Name"] = appInfo.Name
@@ -104,7 +103,7 @@ func (appInfo *AppInfo) getParamMaps() map[string]interface{} {
     return maps
 }
 
-func FormatData(obj interface{}) []AppInfo {
+func formatData(obj interface{}) []AppInfo {
     appsInfo := []AppInfo{}
     typ := reflect.ValueOf(obj)
     //val := reflect.ValueOf(obj)
