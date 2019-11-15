@@ -46,7 +46,9 @@ func CreateAppRole(appG *utils.Gin) (int, int, *RoleInfo, []string) {
 
     dbRole, err := role.AddAppRole()
     if err != nil {
-        return httpCode, errCode, nil, nil
+        errors := utils.ConvErrorToSlice(err, []string{})
+        logging.Error(e.GetMsg(e.ErrorCreateAppFail), errors)
+        return http.StatusInternalServerError, e.ErrorCreateAppFail, nil, errors
     }
 
     roleInfo := RoleInfo{
@@ -121,6 +123,8 @@ func ListAppRoles(appG *utils.Gin) (int, int, map[string]interface{}, []string) 
     role := models.Role{}
     totalAppRoles, err := role.CountAppRoles(roleInfo.getParamMaps())
     if err != nil  {
+        errors := utils.ConvErrorToSlice(err, []string{})
+        logging.Error(e.GetMsg(e.ErrorCountAppRolesFail), errors)
         return http.StatusInternalServerError, e.ErrorCountAppRolesFail, nil, utils.ConvErrorToSlice(err, []string{})
     }
 
@@ -129,6 +133,8 @@ func ListAppRoles(appG *utils.Gin) (int, int, map[string]interface{}, []string) 
 
     roles, err := role.ListAppRoles(pageNum, pageSize, roleInfo.getParamMaps())
     if err != nil  {
+        errors := utils.ConvErrorToSlice(err, []string{})
+        logging.Error(e.GetMsg(e.ErrorListAppRolesFail), errors)
         return http.StatusInternalServerError, e.ErrorListAppRolesFail, nil, utils.ConvErrorToSlice(err, []string{})
     }
     rolesInfo := formatData(roles)
