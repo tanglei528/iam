@@ -24,7 +24,7 @@ var MsgFlags = map[int]string {
     ErrorCountUser:     "获取用户数量失败",
 
     ErrorAuthCheckTokenFail : "Token鉴权失败",
-    ErrorAuthCheckTokenTimeout : "Token已超时",
+    ErrorAuthCheckTokenTimeout : "Token过期",
     ErrorAuthToken : "Token生成失败",
     ErrorAuth : "Token错误",
     ErrorGeneratePassword:  "密码加密失败",

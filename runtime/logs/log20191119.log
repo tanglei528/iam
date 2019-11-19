@@ -8,3 +8,8 @@
 [INFO][auth.go:33]2019/11/19 14:07:36 [0xc000233b00]
 [ERROR][user.go:173]2019/11/19 14:13:36 [lei.tang1@tendcloud.com no record found]
 [ERROR][user.go:173]2019/11/19 14:21:54 [lei.tang1@tendcloud.com no record found]
+[ERROR][auth.go:56]2019/11/19 16:00:48 [[multipart: NextPart: EOF]]
+[ERROR][auth.go:56]2019/11/19 16:01:10 [[multipart: NextPart: EOF]]
+[ERROR][auth.go:56]2019/11/19 16:01:25 [[multipart: NextPart: EOF]]
+[ERROR][auth.go:56]2019/11/19 16:02:13 [[multipart: NextPart: EOF]]
+[ERROR][auth.go:56]2019/11/19 16:02:29 [[multipart: NextPart: EOF]]

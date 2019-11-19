@@ -8,8 +8,8 @@ import (
     "net/http"
 )
 
-type AuthResponse struct {
-    Token       string      `json:"token"`
+type AuthToken struct {
+    Token       string      `form:"token" json:"token" valid:"Required"`
 }
 
 type AuthForm struct {
@@ -17,7 +17,7 @@ type AuthForm struct {
     Password     string     `form:"password" json:"password" valid:"Required;MaxSize(50)"`
 }
 
-func Login(appG *utils.Gin) (int, int, *AuthResponse, []string) {
+func Login(appG *utils.Gin) (int, int, *AuthToken, []string) {
     // 验证表单属性
     authForm := new(AuthForm)
     httpCode, errCode, errorsMsg := utils.BindAndValid(appG.C, authForm)
@@ -42,8 +42,25 @@ func Login(appG *utils.Gin) (int, int, *AuthResponse, []string) {
         logging.Error(e.GetMsg(e.ErrorAuthToken), err)
         return http.StatusInternalServerError, e.ErrorAuthToken, nil, nil
     }
-    authToken := &AuthResponse{
+    authToken := &AuthToken{
         Token: token,
+    }
+    return http.StatusOK, e.Success, authToken, nil
+}
+
+// 验证token
+func ValidateToken(appG *utils.Gin) (int, int, *AuthToken, []string) {
+    // 验证表单属性
+    authToken := new(AuthToken)
+    httpCode, errCode, errorsMsg := utils.BindAndValid(appG.C, authToken)
+    if errCode != e.Success {
+        logging.Error(errorsMsg)
+        return httpCode, errCode, nil, errorsMsg
+    }
+
+    code := utils.CheckToken(authToken.Token)
+    if code != e.Success {
+        return http.StatusUnauthorized, code, nil, nil
     }
     return http.StatusOK, e.Success, authToken, nil
 }

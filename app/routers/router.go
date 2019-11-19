@@ -3,6 +3,7 @@ package routers
 import (
     "github.com/gin-gonic/gin"
     "iam/app/routers/api/v1"
+    "iam/pkg/utils"
 )
 
 func InitRouter() *gin.Engine {
@@ -12,8 +13,10 @@ func InitRouter() *gin.Engine {
     r.Use(gin.Recovery())
 
     apiv1 := r.Group("/api/v1")
+    apiv1.POST("/login", v1.Login)
+    apiv1.POST("/validate", v1.ValidateToken)
 
-    //apiv1.Use(util.JWT())
+    apiv1.Use(utils.JWT())
 
     {
         apiv1.GET("/apps", v1.GetApps)
@@ -34,7 +37,6 @@ func InitRouter() *gin.Engine {
         apiv1.GET("/users", v1.ListUsers)
         apiv1.GET("/users/:id", v1.GetUserByID)
 
-        apiv1.POST("/login", v1.Login)
     }
 
     r.GET("/test", func(c *gin.Context) {
