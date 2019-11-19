@@ -6,9 +6,9 @@ type Role struct {
     Model
     Name           string       `gorm:"column:name;not null"`
     Description    string       `gorm:"column:description;not null"`
-    Permission     string       `gorm:"permission;not null"`
+    Permission     string       `gorm:"column:permission;not null"`
     App            App
-    AppID          int          `gorm:"app_id;not null"`
+    AppID          int          `gorm:"column:app_id;not null"`
 }
 
 func (role *Role) AddAppRole() (*Role, error) {

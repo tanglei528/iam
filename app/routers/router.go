@@ -27,6 +27,14 @@ func InitRouter() *gin.Engine {
         apiv1.GET("/apps/:id/roles/:role_id", v1.GetAppRoleByID)
         apiv1.PUT("/apps/:id/roles/:role_id", v1.UpdateAppRole)
         apiv1.DELETE("/apps/:id/roles/:role_id", v1.DeleteAppRole)
+
+        apiv1.POST("/users", v1.CreateUser)
+        apiv1.DELETE("/users/:id", v1.DeleteUser)
+        apiv1.PUT("/users/:id", v1.UpdateUser)
+        apiv1.GET("/users", v1.ListUsers)
+        apiv1.GET("/users/:id", v1.GetUserByID)
+
+        apiv1.POST("/login", v1.Login)
     }
 
     r.GET("/test", func(c *gin.Context) {

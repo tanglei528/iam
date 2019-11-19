@@ -16,10 +16,19 @@ var MsgFlags = map[int]string {
     ErrorGetAppRole:  "获取应用单个角色失败",
     ErrorUpdateAppRole:  "修改应用角色失败",
 
+    ErrorCreateUser:    "创建用户失败",
+    ErrorDeleteUser:    "删除用户失败",
+    ErrorUpdateUser:    "更新用户失败",
+    ErrorListUsers:     "获取用户列表失败",
+    ErrorGetUser:       "获取单个用户失败",
+    ErrorCountUser:     "获取用户数量失败",
+
     ErrorAuthCheckTokenFail : "Token鉴权失败",
     ErrorAuthCheckTokenTimeout : "Token已超时",
     ErrorAuthToken : "Token生成失败",
     ErrorAuth : "Token错误",
+    ErrorGeneratePassword:  "密码加密失败",
+    ErrorCheckEmailAndPwd: "Email密码验证失败",
 
     ErrorConvIntToBool : "整型转布尔型错误",
 }

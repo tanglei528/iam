@@ -12,7 +12,8 @@ type Gin struct {
 
 func (g *Gin) Response(httpCode, errorCode int, data interface{}, errors interface{}) {
     vi := reflect.ValueOf(errors)
-    if vi.Kind() == reflect.Slice && vi.IsNil() {
+    if errorCode != e.Success && errorCode != e.SuccessCreate && errorCode != e.SuccessResponse &&
+        vi.Kind() == reflect.Slice && vi.IsNil() {
         errors = e.GetMsg(errorCode)
     }
     g.C.JSON(httpCode, gin.H{
@@ -21,6 +22,5 @@ func (g *Gin) Response(httpCode, errorCode int, data interface{}, errors interfa
         "data": data,
         "errors": errors,
     })
-
     return
 }

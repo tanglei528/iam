@@ -34,6 +34,7 @@ func CreateAppRole(appG *utils.Gin) (int, int, *RoleInfo, []string) {
     appID := com.StrTo(appG.C.Param("id")).MustInt()
 
     if errCode != e.Success {
+        logging.Error(errorsMsg)
         return httpCode, errCode, nil, errorsMsg
     }
 
