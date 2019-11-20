@@ -14,6 +14,7 @@ const (
     ErrorAuth = 10004
     ErrorGeneratePassword = 10005
     ErrorCheckEmailAndPwd = 10006
+    ErrorAuthTokenProvide = 10007
 
     ErrorCountAppFail = 10011
     ErrorGetAppsFail  = 10012
@@ -30,8 +31,20 @@ const (
     ErrorUpdateUser  = 20013
     ErrorListUsers   = 20014
     ErrorGetUser     = 20015
-    ErrorCountUser  = 20016
+    ErrorCountUser   = 20016
+
+
+    ErrorCreateAppAction = 30011
+    ErrorDeleteAppAction = 30012
+    ErrorUpdateAppAction = 30013
+    ErrorListAppActions  = 30014
+    ErrorGetAppAction    = 30015
+    ErrorCountAppAction  = 30016
 
 
     ErrorConvIntToBool  = 50001
+    ErrorAppHeader      = 50002
+    ErrorAppIDKey       = 50003
+
+    ErrorNoRedisKey       = 60001
 )

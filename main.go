@@ -5,6 +5,7 @@ import (
     "github.com/fvbock/endless"
     "iam/app/models"
     "iam/app/routers"
+    "iam/pkg/gredis"
     "iam/pkg/logging"
     setting "iam/pkg/settings"
     "iam/pkg/validate"
@@ -16,8 +17,8 @@ func main() {
     setting.Setup()
     models.Setup()
     logging.Setup()
-    //gredis.Setup()
-    validate.SetUp()
+    gredis.Setup()
+    validate.Setup()
 
     endless.DefaultReadTimeOut = setting.ServerSetting.ReadTimeout
     endless.DefaultWriteTimeOut = setting.ServerSetting.WriteTimeout

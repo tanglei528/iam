@@ -4,6 +4,7 @@ import (
     "github.com/dgrijalva/jwt-go"
     "github.com/gin-gonic/gin"
     e "iam/pkg/exception"
+    "iam/pkg/logging"
     "net/http"
     "time"
 )
@@ -58,7 +59,8 @@ func JWT() gin.HandlerFunc {
         code = e.Success
         token := c.GetHeader("token")
         if token == "" {
-            code = e.InvalidParams
+            logging.Error("Not found token in header")
+            code = e.ErrorAuthTokenProvide
         } else {
             code = CheckToken(token)
         }
@@ -80,8 +82,10 @@ func CheckToken(token string) int {
     code := e.Success
     claims, err := ParseToken(token)
     if err != nil {
+        logging.Error(e.GetMsg(e.ErrorAuthCheckTokenFail))
         code = e.ErrorAuthCheckTokenFail
     } else if time.Now().Unix() > claims.ExpiresAt {
+        logging.Warn(e.GetMsg(e.ErrorAuthCheckTokenTimeout))
         code = e.ErrorAuthCheckTokenTimeout
     }
     return code

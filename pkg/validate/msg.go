@@ -50,6 +50,6 @@ func SetDefaultMessage() {
 //}
 
 
-func SetUp() {
+func Setup() {
     SetDefaultMessage()
 }

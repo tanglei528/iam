@@ -2,8 +2,10 @@ package routers
 
 import (
     "github.com/gin-gonic/gin"
+    "iam/app/models"
     "iam/app/routers/api/v1"
     "iam/pkg/utils"
+    "net/http"
 )
 
 func InitRouter() *gin.Engine {
@@ -13,10 +15,15 @@ func InitRouter() *gin.Engine {
     r.Use(gin.Recovery())
 
     apiv1 := r.Group("/api/v1")
+
+
+
+
     apiv1.POST("/login", v1.Login)
     apiv1.POST("/validate", v1.ValidateToken)
 
     apiv1.Use(utils.JWT())
+    apiv1.Use(models.AppCheck())
 
     {
         apiv1.GET("/apps", v1.GetApps)
@@ -37,12 +44,21 @@ func InitRouter() *gin.Engine {
         apiv1.GET("/users", v1.ListUsers)
         apiv1.GET("/users/:id", v1.GetUserByID)
 
+        apiv1.POST("/apps/:id/actions", v1.CreateAppAction)
+        apiv1.GET("/apps/:id/actions", v1.ListAppActions)
+        apiv1.GET("/apps/:id/actions/:action_id", v1.GetAppActionByID)
+        apiv1.PUT("/apps/:id/actions/:action_id", v1.UpdateAppAction)
+        apiv1.DELETE("/apps/:id/actions/:action_id", v1.DeleteAppAction)
     }
 
+
+
     r.GET("/test", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "test",
-        })
+        c.Redirect(http.StatusMovedPermanently, "http://www.baidu.com")
+
+        //c.JSON(200, gin.H{
+        //    "message": "test",
+        //})
     })
 
     return r

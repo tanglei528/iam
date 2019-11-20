@@ -25,12 +25,13 @@ func Login(appG *utils.Gin) (int, int, *AuthToken, []string) {
         logging.Error(errorsMsg)
         return httpCode, errCode, nil, errorsMsg
     }
-
+    // 根据email获取用户
     dbUser, err := user_service.GetUserByEmail(authForm.Email)
     if err != nil {
         return http.StatusInternalServerError, e.ErrorListUsers, nil, utils.ConvErrorToSlice(err, []string{})
     }
 
+    // 判断输入的密码与数据库加密后的密码hash是否一致
     err = utils.CheckPassword(dbUser.Password, authForm.Password)
     if err != nil {
         logging.Error(err)
